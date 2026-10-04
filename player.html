@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>__TITLE__</title>
+<style>
+  :root {
+    --page: #e8eaee;
+    --text: #1b1e24;
+    --soft: #5a6170;
+    --line: #c3c8d1;
+    --button: #ffffff;
+    --stage-bg: #ffffff;
+    --stage-ink: #111111;
+    --stage-font: sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page: #15171b; --text: #e7e9ee; --soft: #a2a9b6; --line: #3a3f49; --button: #22252b;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #15171b; --text: #e7e9ee; --soft: #a2a9b6; --line: #3a3f49; --button: #22252b;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--text);
+    font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.45;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 32px; }
+  h1 { font-size: 1.1rem; font-weight: 600; margin: 0 0 12px; }
+
+  .board { border-radius: 12px; overflow: hidden; background: var(--stage-bg); border: 1px solid var(--line); }
+  .board svg { display: block; width: 100%; height: auto; }
+  #caption {
+    margin: 0;
+    padding: 14px 20px 16px;
+    min-height: 4.2em;
+    background: var(--stage-bg);
+    color: var(--stage-ink);
+    font-family: var(--stage-font);
+    font-size: clamp(1.05rem, 2.6vw, 1.45rem);
+    line-height: 1.35;
+    text-align: center;
+    border-top: 2px solid color-mix(in srgb, var(--stage-ink) 22%, transparent);
+  }
+  #caption[hidden] { display: none; }
+
+  .controls { display: flex; align-items: center; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  button {
+    font: inherit; color: var(--text); background: var(--button);
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 8px 14px; min-height: 40px; cursor: pointer;
+  }
+  button:hover { border-color: var(--soft); }
+  button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+  #play { min-width: 5.2em; font-weight: 600; }
+  .step { padding: 8px 12px; }
+  #captions-toggle[aria-pressed="false"] { color: var(--soft); text-decoration: line-through; }
+
+  .track { position: relative; flex: 1 1 220px; min-width: 160px; height: 40px; display: flex; align-items: center; }
+  .track input { width: 100%; margin: 0; accent-color: var(--text); position: relative; z-index: 1; }
+  .ticks { position: absolute; left: 8px; right: 8px; top: 4px; height: 6px; pointer-events: none; }
+  .ticks i { position: absolute; width: 2px; height: 6px; background: var(--soft); border-radius: 1px; }
+  #time { font-variant-numeric: tabular-nums; color: var(--soft); font-size: 0.9rem; white-space: nowrap; }
+
+  details { margin-top: 18px; color: var(--soft); }
+  summary { cursor: pointer; padding: 6px 0; }
+  details ol { margin: 8px 0 0; padding-left: 1.4em; color: var(--text); max-width: 68ch; }
+  details li { margin: 0 0 8px; }
+  details li.now { font-weight: 600; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1 id="title"></h1>
+  <div class="board">
+    <svg id="stage" role="img" xmlns="http://www.w3.org/2000/svg"><g id="bg"></g><g id="fg"></g></svg>
+    <p id="caption" aria-live="polite"></p>
+  </div>
+  <div class="controls">
+    <button id="play" type="button">Play</button>
+    <button id="prev" class="step" type="button" aria-label="Previous scene">&#8249;</button>
+    <button id="next" class="step" type="button" aria-label="Next scene">&#8250;</button>
+    <div class="track">
+      <div class="ticks" id="ticks" aria-hidden="true"></div>
+      <input id="seek" type="range" min="0" step="0.01" value="0" aria-label="Position in the animation">
+    </div>
+    <span id="time">0:00</span>
+    <button id="captions-toggle" type="button" aria-pressed="true">Captions</button>
+  </div>
+  <details>
+    <summary>Read the script</summary>
+    <ol id="script"></ol>
+  </details>
+</main>
+
+<script type="application/json" id="storyboard-data">__STORYBOARD__</script>
+<script type="application/json" id="library-data">__LIBRARY__</script>
+<script>
+__RUNTIME__
+</script>
+<script>
+(function () {
+  "use strict";
+  var sb = JSON.parse(document.getElementById("storyboard-data").textContent);
+  var lib = JSON.parse(document.getElementById("library-data").textContent);
+  var RT = window.StickRT;
+  var style = lib.styles[sb.style] || lib.styles.whiteboard;
+  var total = RT.total(sb);
+
+  var stage = document.getElementById("stage");
+  var fg = document.getElementById("fg");
+  var caption = document.getElementById("caption");
+  var playBtn = document.getElementById("play");
+  var seek = document.getElementById("seek");
+  var timeEl = document.getElementById("time");
+  var script = document.getElementById("script");
+
+  var rootStyle = document.documentElement.style;
+  rootStyle.setProperty("--stage-bg", style.bg);
+  rootStyle.setProperty("--stage-ink", style.ink);
+  rootStyle.setProperty("--stage-font", style.font);
+
+  document.getElementById("title").textContent = sb.title || "";
+  stage.setAttribute("viewBox", "0 0 " + lib.stage.width + " " + lib.stage.height);
+  stage.setAttribute("aria-label", "Stick-figure animation: " + (sb.title || ""));
+  document.getElementById("bg").innerHTML = RT.background(lib, sb.style);
+  seek.max = total;
+
+  // Scene markers on the scrubber, and the readable script underneath.
+  var acc = 0, starts = [];
+  sb.scenes.forEach(function (sc, i) {
+    starts.push(acc);
+    if (i > 0) {
+      var tick = document.createElement("i");
+      tick.style.left = (acc / total * 100) + "%";
+      document.getElementById("ticks").appendChild(tick);
+    }
+    var li = document.createElement("li");
+    li.textContent = sc.caption || sc.title || "";
+    script.appendChild(li);
+    acc += sc.duration;
+  });
+
+  var T = 0, playing = false, last = 0, lastDraw = 0, shownScene = -1;
+
+  function clock(s) {
+    s = Math.max(0, Math.floor(s));
+    return Math.floor(s / 60) + ":" + (s % 60 < 10 ? "0" : "") + (s % 60);
+  }
+
+  function draw() {
+    var loc = RT.locate(sb, Math.min(T, total - 0.001));
+    fg.innerHTML = RT.frame(sb, lib, sb.style, loc.index, loc.t, { T: T });
+    if (loc.index !== shownScene) {
+      shownScene = loc.index;
+      caption.textContent = sb.scenes[loc.index].caption || "";
+      Array.prototype.forEach.call(script.children, function (li, i) {
+        li.className = i === loc.index ? "now" : "";
+      });
+    }
+    seek.value = T;
+    timeEl.textContent = clock(T) + " / " + clock(total);
+  }
+
+  function label() {
+    playBtn.textContent = playing ? "Pause" : (T >= total ? "Replay" : "Play");
+  }
+
+  function tick(now) {
+    if (!playing) return;
+    T += Math.min((now - last) / 1000, 0.1);
+    last = now;
+    if (T >= total) { T = total; playing = false; label(); draw(); return; }
+    if (now - lastDraw >= 33) { draw(); lastDraw = now; }
+    requestAnimationFrame(tick);
+  }
+
+  function play() {
+    if (T >= total) T = 0;
+    playing = true;
+    last = performance.now();
+    label();
+    requestAnimationFrame(tick);
+  }
+  function pause() { playing = false; label(); draw(); }
+  function toggle() { if (playing) pause(); else play(); }
+
+  function jump(step) {
+    var now = RT.locate(sb, Math.min(T, total - 0.001));
+    var target = step < 0 && now.t > 1 ? now.index : now.index + step;
+    target = Math.max(0, Math.min(sb.scenes.length - 1, target));
+    T = starts[target];
+    draw();
+    label();
+  }
+
+  playBtn.addEventListener("click", toggle);
+  document.getElementById("prev").addEventListener("click", function () { jump(-1); });
+  document.getElementById("next").addEventListener("click", function () { jump(1); });
+  seek.addEventListener("input", function () { T = parseFloat(seek.value) || 0; draw(); label(); });
+
+  var cc = document.getElementById("captions-toggle");
+  cc.addEventListener("click", function () {
+    var on = cc.getAttribute("aria-pressed") !== "true";
+    cc.setAttribute("aria-pressed", on ? "true" : "false");
+    caption.hidden = !on;
+  });
+
+  document.addEventListener("keydown", function (e) {
+    var tag = e.target && e.target.tagName;
+    if (tag === "INPUT" || tag === "BUTTON" || tag === "SUMMARY") return;
+    if (e.key === " ") { e.preventDefault(); toggle(); }
+    else if (e.key === "ArrowLeft") jump(-1);
+    else if (e.key === "ArrowRight") jump(1);
+  });
+
+  draw();
+  label();
+  // People who ask their device for less motion get a paused first frame.
+  var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!calm) play();
+})();
+</script>
+</body>
+</html>

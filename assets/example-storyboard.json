@@ -1,0 +1,302 @@
+{
+  "title": "How compound interest works",
+  "style": "whiteboard",
+  "scenes": [
+    {
+      "id": "hook",
+      "duration": 6,
+      "title": "Can money grow by itself?",
+      "caption": "If you leave money alone, can it really grow by itself?",
+      "actors": [
+        {
+          "id": "sam",
+          "x": 430,
+          "pose": "stand",
+          "expression": "neutral",
+          "keys": [
+            {
+              "at": 1.2,
+              "pose": "think",
+              "expression": "thinking",
+              "say": "Hmm..."
+            },
+            {
+              "at": 4.2,
+              "pose": "shrug",
+              "expression": "neutral"
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "type": "icon",
+          "name": "coin",
+          "x": 800,
+          "y": 360,
+          "size": 140,
+          "float": 8,
+          "appear": 0.6
+        },
+        {
+          "type": "icon",
+          "name": "question",
+          "x": 940,
+          "y": 270,
+          "size": 90,
+          "color": "accent2",
+          "appear": 2.2
+        }
+      ]
+    },
+    {
+      "id": "year-one",
+      "duration": 7,
+      "title": "Year 1: 10% interest",
+      "caption": "Put $100 in an account that pays 10% a year. After one year you have $110.",
+      "actors": [
+        {
+          "id": "sam",
+          "x": 260,
+          "pose": "explain",
+          "expression": "happy",
+          "keys": [
+            {
+              "at": 3.2,
+              "pose": "point",
+              "say": "+$10"
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "type": "bar",
+          "x": 620,
+          "w": 90,
+          "h": 150,
+          "label": "Start",
+          "value": "$100",
+          "color": "accent2",
+          "appear": 0.8
+        },
+        {
+          "type": "bar",
+          "x": 820,
+          "w": 90,
+          "h": 165,
+          "label": "Year 1",
+          "value": "$110",
+          "appear": 2.6
+        },
+        {
+          "type": "arrow",
+          "x": 630,
+          "y": 385,
+          "x2": 810,
+          "y2": 372,
+          "bend": -50,
+          "label": "+10%",
+          "color": "accent",
+          "appear": 3.6
+        }
+      ]
+    },
+    {
+      "id": "interest-on-interest",
+      "duration": 8,
+      "title": "Interest earns interest",
+      "caption": "Next year you earn 10% on $110, not on $100. The interest starts earning interest.",
+      "actors": [
+        {
+          "id": "sam",
+          "x": 220,
+          "pose": "stand",
+          "expression": "neutral",
+          "keys": [
+            {
+              "at": 2.2,
+              "pose": "point",
+              "expression": "happy"
+            },
+            {
+              "at": 5.6,
+              "pose": "surprised",
+              "expression": "surprised",
+              "say": "It speeds up!"
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "type": "bar",
+          "x": 520,
+          "w": 80,
+          "h": 150,
+          "label": "Start",
+          "value": "$100",
+          "color": "accent2",
+          "appear": 0.3
+        },
+        {
+          "type": "bar",
+          "x": 680,
+          "w": 80,
+          "h": 165,
+          "label": "Year 1",
+          "value": "$110",
+          "appear": 1.0
+        },
+        {
+          "type": "bar",
+          "x": 840,
+          "w": 80,
+          "h": 182,
+          "label": "Year 2",
+          "value": "$121",
+          "appear": 2.4
+        },
+        {
+          "type": "bar",
+          "x": 1000,
+          "w": 80,
+          "h": 200,
+          "label": "Year 3",
+          "value": "$133",
+          "appear": 3.8
+        },
+        {
+          "type": "text",
+          "x": 600,
+          "y": 372,
+          "text": "+$10",
+          "size": "s",
+          "color": "accent",
+          "appear": 1.6
+        },
+        {
+          "type": "text",
+          "x": 760,
+          "y": 354,
+          "text": "+$11",
+          "size": "s",
+          "color": "accent",
+          "appear": 3.0
+        },
+        {
+          "type": "text",
+          "x": 920,
+          "y": 336,
+          "text": "+$12",
+          "size": "s",
+          "color": "accent",
+          "appear": 4.4
+        }
+      ]
+    },
+    {
+      "id": "ten-years",
+      "duration": 8,
+      "title": "After 10 years",
+      "caption": "After ten years, simple interest gives you $200. Compound interest gives you about $259.",
+      "actors": [
+        {
+          "id": "sam",
+          "x": 160,
+          "pose": "stand",
+          "expression": "neutral",
+          "keys": [
+            {
+              "at": 0.5,
+              "x": 360,
+              "pose": "point"
+            },
+            {
+              "at": 5.4,
+              "pose": "cheer",
+              "expression": "happy"
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "type": "bar",
+          "x": 680,
+          "w": 120,
+          "h": 300,
+          "label": "Simple",
+          "value": "$200",
+          "color": "accent2",
+          "appear": 1.6
+        },
+        {
+          "type": "bar",
+          "x": 920,
+          "w": 120,
+          "h": 389,
+          "label": "Compound",
+          "value": "$259",
+          "appear": 3.2
+        },
+        {
+          "type": "line",
+          "x": 590,
+          "y": 290,
+          "x2": 1010,
+          "y2": 290,
+          "dashed": true,
+          "color": "muted",
+          "appear": 4.4
+        }
+      ]
+    },
+    {
+      "id": "recap",
+      "duration": 7,
+      "title": "Start early, let it roll",
+      "caption": "That is compounding: growth that builds on itself. The earlier you start, the bigger it gets.",
+      "actors": [
+        {
+          "id": "sam",
+          "x": 250,
+          "pose": "push",
+          "expression": "happy",
+          "keys": [
+            {
+              "at": 1.0,
+              "x": 760,
+              "dur": 4,
+              "walk_as": "push",
+              "pose": "push"
+            },
+            {
+              "at": 5.4,
+              "pose": "cheer",
+              "say": "Whoa!"
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "type": "circle",
+          "x": 408,
+          "r": 36,
+          "label": "$",
+          "fill": true,
+          "color": "accent",
+          "keys": [
+            {
+              "at": 1.0,
+              "x": 976,
+              "scale": 2.6,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

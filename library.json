@@ -1,0 +1,123 @@
+{
+  "stage": { "width": 1280, "height": 720, "ground": 590 },
+  "dims": {
+    "head": 28, "neck": 7, "torso": 92,
+    "upperArm": 47, "foreArm": 45,
+    "thigh": 59, "shin": 59, "foot": 14,
+    "walkSpeed": 240, "stride": 98, "poseBlend": 0.35
+  },
+  "poses": {
+    "stand":     { "t": 0,  "h": 0,   "aF": [14, 8],    "aB": [-18, 6],    "lF": [7, 0],     "lB": [-7, 0] },
+    "explain":   { "t": 2,  "h": 0,   "aF": [42, 74],   "aB": [-20, 6],    "lF": [7, 0],     "lB": [-7, 0],   "osc": { "aF1": [12, 1.5] } },
+    "point":     { "t": 3,  "h": 0,   "aF": [100, 0],   "aB": [-20, 6],    "lF": [9, 0],     "lB": [-9, 0] },
+    "point_up":  { "t": 0,  "h": -8,  "aF": [152, 0],   "aB": [-20, 6],    "lF": [7, 0],     "lB": [-7, 0] },
+    "wave":      { "t": 0,  "h": 4,   "aF": [115, 40],  "aB": [-20, 6],    "lF": [7, 0],     "lB": [-7, 0],   "osc": { "aF1": [22, 2.6] } },
+    "shrug":     { "t": 0,  "h": 10,  "aF": [38, 78],   "aB": [-38, -78],  "lF": [7, 0],     "lB": [-7, 0] },
+    "think":     { "t": 4,  "h": 6,   "aF": [55, 153],  "aB": [-20, 6],   "lF": [7, 0],     "lB": [-7, 0] },
+    "confident": { "t": -2, "h": -2,  "aF": [40, -73],  "aB": [-40, 73],   "lF": [12, 0],    "lB": [-12, 0] },
+    "carry":     { "t": 4,  "h": 0,   "aF": [48, 44],   "aB": [36, 50],    "lF": [7, 0],     "lB": [-7, 0] },
+    "hold_up":   { "t": 0,  "h": -4,  "aF": [130, 30],  "aB": [-130, -30],  "lF": [9, 0],     "lB": [-9, 0] },
+    "push":      { "t": 22, "h": -8,  "aF": [78, 8],    "aB": [70, 12],    "lF": [26, -30],  "lB": [-28, -2] },
+    "write":     { "t": 2,  "h": 0,   "aF": [86, 14],   "aB": [-20, 6],    "lF": [7, 0],     "lB": [-7, 0],   "osc": { "aF0": [5, 3.5], "aF1": [6, 5] } },
+    "sit":       { "t": 2,  "h": 0,   "aF": [10, 55],   "aB": [4, 50],     "lF": [88, -86],  "lB": [80, -80] },
+    "jump":      { "t": 0,  "h": -4,  "aF": [138, 14],  "aB": [-138, -14], "lF": [30, -50],  "lB": [-20, -40], "dy": -80 },
+    "cheer":     { "t": 0,  "h": -6,  "aF": [138, 12],  "aB": [-138, -12],  "lF": [9, 0],     "lB": [-9, 0],   "osc": { "dy": [12, 2.4] } },
+    "dance":     { "t": 0,  "h": 0,   "aF": [120, 40],  "aB": [-120, -40], "lF": [12, 0],    "lB": [-12, 0],  "osc": { "aF0": [25, 2.2], "aB0": [25, 2.2], "dy": [8, 2.2], "t": [6, 1.1] } },
+    "surprised": { "t": -8, "h": -6,  "aF": [70, 30],   "aB": [-70, -30],  "lF": [12, 0],    "lB": [-12, 0] },
+    "sad":       { "t": 14, "h": 28,  "aF": [6, 2],     "aB": [-4, 2],     "lF": [5, 0],     "lB": [-5, 0] },
+    "walk":      { "cycle": true }
+  },
+  "expressions": ["neutral", "happy", "sad", "surprised", "thinking", "none"],
+  "styles": {
+    "whiteboard": {
+      "name": "Whiteboard", "mood": "Friendly and clear, like a teacher sketching live",
+      "bg": "#f7f8f5", "pattern": "none",
+      "ink": "#20242b", "accent": "#e0452f", "accent2": "#1b6fd1", "muted": "#9aa0a6",
+      "stroke": 5, "wobble": 2.0, "passes": 1, "boil": true, "glow": false,
+      "headFill": "bg", "fill": "hachure", "fillOpacity": 0.75,
+      "font": "\"Marker Felt\", \"Comic Sans MS\", \"Chalkboard SE\", \"Segoe Print\", \"Comic Neue\", \"Coming Soon\", casual, cursive", "weight": 400, "charW": 0.56
+    },
+    "chalkboard": {
+      "name": "Chalkboard", "mood": "Classic classroom, warm and a little nostalgic",
+      "bg": "#263a33", "pattern": "none",
+      "ink": "#f3f0e4", "accent": "#ffd35c", "accent2": "#ff9ecb", "muted": "#9fb3aa",
+      "stroke": 5, "wobble": 2.4, "passes": 2, "boil": true, "glow": false,
+      "headFill": "bg", "fill": "hachure", "fillOpacity": 0.7,
+      "font": "Chalkduster, \"Chalkboard SE\", \"Segoe Print\", \"Comic Sans MS\", \"Comic Neue\", \"Coming Soon\", casual, cursive", "weight": 400, "charW": 0.64
+    },
+    "notebook": {
+      "name": "Notebook doodle", "mood": "Casual and personal, like notes from a clever friend",
+      "bg": "#fbf7ea", "pattern": "ruled",
+      "ink": "#233a8f", "accent": "#d7263d", "accent2": "#1e8a4c", "muted": "#8c93b3",
+      "stroke": 3.2, "wobble": 1.6, "passes": 2, "boil": true, "glow": false,
+      "headFill": "bg", "fill": "hachure", "fillOpacity": 0.7,
+      "font": "\"Bradley Hand\", \"Segoe Script\", \"Ink Free\", \"Comic Sans MS\", \"Comic Neue\", \"Coming Soon\", casual, cursive", "weight": 700, "charW": 0.56
+    },
+    "blueprint": {
+      "name": "Blueprint", "mood": "Precise and technical, good for systems and mechanisms",
+      "bg": "#164a9c", "pattern": "grid",
+      "ink": "#f1f6ff", "accent": "#ffd447", "accent2": "#7fe7ff", "muted": "#9bbcf0",
+      "stroke": 2.6, "wobble": 0, "passes": 1, "boil": false, "glow": false,
+      "headFill": "bg", "fill": "hachure", "fillOpacity": 0.6,
+      "font": "\"SF Mono\", Menlo, Consolas, \"DejaVu Sans Mono\", monospace", "weight": 500, "charW": 0.62
+    },
+    "poster": {
+      "name": "Bold poster", "mood": "Loud and punchy, built for short social clips",
+      "bg": "#ffd23f", "pattern": "none",
+      "ink": "#151515", "accent": "#e63946", "accent2": "#2a4bd7", "muted": "#8a6d0b",
+      "stroke": 8, "wobble": 0, "passes": 1, "boil": false, "glow": false,
+      "headFill": "ink", "fill": "solid", "fillOpacity": 1,
+      "font": "\"Arial Black\", \"Segoe UI Black\", \"Helvetica Neue\", Impact, Arial, sans-serif", "weight": 900, "charW": 0.66
+    },
+    "neon": {
+      "name": "Night neon", "mood": "Glowing lines on dark, modern and a bit sci-fi",
+      "bg": "#0d0f1a", "pattern": "dots",
+      "ink": "#6ef3ff", "accent": "#ff5fd2", "accent2": "#c8ff5e", "muted": "#5b6b8f",
+      "stroke": 3.6, "wobble": 0.5, "passes": 1, "boil": true, "glow": true,
+      "headFill": "bg", "fill": "solid", "fillOpacity": 0.2,
+      "font": "\"Avenir Next\", \"Trebuchet MS\", \"Segoe UI\", Verdana, sans-serif", "weight": 600, "charW": 0.58
+    },
+    "kraft": {
+      "name": "Crayon on kraft", "mood": "Chunky and playful, great for younger audiences",
+      "bg": "#d8c3a0", "pattern": "none",
+      "ink": "#3a2a1c", "accent": "#c8452c", "accent2": "#24618e", "muted": "#8b7355",
+      "stroke": 7, "wobble": 3.0, "passes": 2, "boil": true, "glow": false,
+      "headFill": "bg", "fill": "hachure", "fillOpacity": 0.75,
+      "font": "\"Comic Sans MS\", \"Chalkboard SE\", \"Marker Felt\", \"Segoe Print\", \"Comic Neue\", \"Coming Soon\", casual, cursive", "weight": 700, "charW": 0.58
+    }
+  },
+  "icons": {
+    "sun":       [["circle", 50, 50, 20, true], ["rays", 50, 50, 28, 42, 8, 0]],
+    "cloud":     [["curve", [[22, 68], [12, 54], [24, 40], [38, 42], [46, 26], [64, 26], [72, 40], [86, 44], [90, 58], [78, 68]], true, true]],
+    "bulb":      [["circle", 50, 40, 24, true], ["line", 40, 68, 60, 68], ["line", 42, 76, 58, 76], ["line", 46, 84, 54, 84]],
+    "coin":      [["circle", 50, 50, 34, true], ["text", 50, 52, "$", 40]],
+    "star":      [["poly", [[50, 12], [59.4, 39.1], [88, 39.6], [65.2, 56.9], [73.5, 84.4], [50, 68], [26.5, 84.4], [34.8, 56.9], [12, 39.6], [40.6, 39.1]], true, true]],
+    "heart":     [["curve", [[50, 84], [20, 54], [16, 34], [32, 22], [50, 36], [68, 22], [84, 34], [80, 54]], true, true]],
+    "tree":      [["line", 46, 92, 46, 62], ["line", 54, 92, 54, 62], ["circle", 50, 40, 28, true]],
+    "house":     [["poly", [[20, 90], [20, 50], [50, 22], [80, 50], [80, 90]], true, false], ["poly", [[44, 90], [44, 66], [58, 66], [58, 90]], false, false]],
+    "drop":      [["curve", [[50, 12], [34, 44], [28, 64], [36, 80], [50, 86], [64, 80], [72, 64], [66, 44]], true, true]],
+    "bolt":      [["poly", [[56, 10], [26, 54], [46, 54], [40, 90], [74, 42], [54, 42]], true, true]],
+    "leaf":      [["curve", [[20, 80], [28, 44], [56, 22], [84, 16], [80, 44], [58, 70]], true, true], ["line", 20, 80, 68, 32]],
+    "sprout":    [["line", 50, 92, 50, 52], ["curve", [[50, 58], [32, 48], [22, 30], [42, 36]], true, true], ["curve", [[50, 52], [68, 40], [80, 22], [60, 28]], true, true]],
+    "fire":      [["curve", [[50, 90], [28, 72], [30, 48], [44, 32], [48, 12], [64, 34], [74, 56], [70, 76]], true, true]],
+    "flag":      [["line", 30, 92, 30, 12], ["poly", [[30, 14], [78, 28], [30, 44]], true, true]],
+    "gear":      [["circle", 50, 50, 22, false], ["circle", 50, 50, 8, false], ["rays", 50, 50, 22, 34, 8, 22.5]],
+    "check":     [["poly", [[20, 54], [42, 76], [82, 26]], false, false]],
+    "cross":     [["line", 24, 24, 76, 76], ["line", 76, 24, 24, 76]],
+    "question":  [["text", 50, 52, "?", 88]],
+    "exclaim":   [["text", 50, 52, "!", 88]],
+    "warning":   [["poly", [[50, 14], [90, 84], [10, 84]], true, true], ["text", 50, 62, "!", 40]],
+    "book":      [["poly", [[14, 26], [50, 34], [86, 26], [86, 76], [50, 84], [14, 76]], true, false], ["line", 50, 34, 50, 84]],
+    "clock":     [["circle", 50, 50, 36, false], ["line", 50, 50, 50, 26], ["line", 50, 50, 66, 58]],
+    "computer":  [["rect", 16, 20, 84, 64, false], ["line", 40, 64, 36, 80], ["line", 60, 64, 64, 80], ["line", 28, 80, 72, 80]],
+    "server":    [["rect", 22, 16, 78, 42, false], ["rect", 22, 50, 78, 76, false], ["dot", 34, 29, 3.5], ["dot", 34, 63, 3.5], ["line", 46, 29, 68, 29], ["line", 46, 63, 68, 63]],
+    "phone":     [["rect", 32, 10, 68, 90, false], ["line", 44, 80, 56, 80]],
+    "envelope":  [["rect", 14, 26, 86, 74, false], ["poly", [[14, 26], [50, 54], [86, 26]], false, false]],
+    "globe":     [["circle", 50, 50, 36, false], ["curve", [[50, 14], [34, 50], [50, 86]], false, false], ["curve", [[50, 14], [66, 50], [50, 86]], false, false], ["line", 14, 50, 86, 50]],
+    "magnifier": [["circle", 42, 42, 24, false], ["line", 60, 60, 86, 86]],
+    "mountain":  [["poly", [[8, 86], [38, 28], [56, 60], [68, 44], [92, 86]], false, false]],
+    "lock":      [["rect", 24, 46, 76, 88, true], ["curve", [[34, 46], [34, 24], [50, 14], [66, 24], [66, 46]], false, false]],
+    "key":       [["circle", 30, 50, 16, false], ["line", 46, 50, 88, 50], ["line", 76, 50, 76, 64], ["line", 86, 50, 86, 62]],
+    "battery":   [["rect", 14, 34, 80, 66, false], ["line", 86, 44, 86, 56], ["rect", 20, 40, 52, 60, true]]
+  }
+}
