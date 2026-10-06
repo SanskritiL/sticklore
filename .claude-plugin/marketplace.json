@@ -1,0 +1,12 @@
+{
+  "name": "sticklore",
+  "description": "Stick-figure explainer animations",
+  "owner": { "name": "SanskritiL" },
+  "plugins": [
+    {
+      "name": "sticklore",
+      "source": "./",
+      "description": "Turn a topic into a short stick-figure explainer animation."
+    }
+  ]
+}
